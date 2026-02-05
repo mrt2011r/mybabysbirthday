@@ -481,75 +481,94 @@
             letter-spacing: 2px;
         }
 
-        /* Page 9: Quiz */
-               // Quiz
-        let currentQuestion = 0;
-        const questions = [
-            {
-                q: "What is my favorite thing about you?",
-                options: ["Your smile", "Everything about you", "Your personality", "All of the above and more"],
-                correct: 3,
-                response: "Correct! The answer is always ALL OF YOU! 💕"
-            },
-            {
-                q: "When did I realize I loved you?",
-                options: ["saeed told me", "when u gave me a choclate", "the first time u threw an eraser at me in y7(that was so cute	)", "I just knew instantly"],
-                correct: 3,
-                response: "I knew from the very beginning that you were special! ✨"
-            },
-            {
-                q: "What would I choose if I had to pick?",
-                options: ["My phone", "A monkey from the zoo", "You", "My favorite game"],
-                correct: 2,
-                response: "Always YOU! Every single time! 💝"
-            }
-        ];
-
-        function checkAnswer(selected) {
-            const result = document.getElementById('result');
-            const q = questions[currentQuestion];
-            
-            if(selected === q.correct) {
-                result.innerHTML = q.response + '<br>❤️❤️❤️';
-                result.style.color = '#00b894';
-                
-                setTimeout(() => {
-                    currentQuestion++;
-                    if(currentQuestion < questions.length) {
-                        loadQuestion();
-                    } else {
-                        document.getElementById('quiz-box').innerHTML = 
-                            '<div style="text-align:center; padding:40px;">' +
-                            '<div style="font-size:4em; margin-bottom:20px;">🎉</div>' +
-                            '<h2 style="color:#764ba2; margin-bottom:20px;">Quiz Complete!</h2>' +
-                            '<p style="font-size:1.2em; color:#555;">You know me so well!<br>That\'s because we\'re perfect for each other trust 💕</p>' +
-                            '<button onclick="currentQuestion=0; loadQuestion();" style="margin-top:20px; background:linear-gradient(45deg, #667eea 0%, #764ba2 100%); border:none; color:white; padding:15px 30px; border-radius:25px; cursor:pointer;">Play Again</button>' +
-                            '</div>';
+    <!-- PAGE 9: QUIZ -->
+    <div id="quiz" class="page">
+        <h2 style="text-align: center; color: white; font-size: 2.5em; margin-bottom: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            How Well Do You Know Me? ❓
+        </h2>
+        <div class="quiz-container" id="quiz-box" style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div class="quiz-question" id="question" style="font-size: 1.5em; color: #333; margin-bottom: 30px; text-align: center;">What is my favorite thing about you?</div>
+            <div class="quiz-options" id="options" style="display: grid; gap: 15px;">
+                <button class="quiz-btn" onclick="checkAnswer(0)" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 20px; border-radius: 15px; cursor: pointer; font-size: 1.1em; transition: all 0.3s;">Your smile</button>
+                <button class="quiz-btn" onclick="checkAnswer(1)" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 20px; border-radius: 15px; cursor: pointer; font-size: 1.1em; transition: all 0.3s;">Everything about you</button>
+                <button class="quiz-btn" onclick="checkAnswer(2)" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 20px; border-radius: 15px; cursor: pointer; font-size: 1.1em; transition: all 0.3s;">Your personality</button>
+                <button class="quiz-btn" onclick="checkAnswer(3)" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 20px; border-radius: 15px; cursor: pointer; font-size: 1.1em; transition: all 0.3s;">All of the above and more</button>
+            </div>
+            <div class="quiz-result" id="result" style="text-align: center; font-size: 2em; color: #f5576c; margin-top: 20px;"></div>
+        </div>
+        
+        <!-- QUIZ JAVASCRIPT -->
+        <script>
+            (function() {
+                let currentQuestion = 0;
+                const questions = [
+                    {
+                        q: "What is my favorite thing about you?",
+                        options: ["Your smile", "Everything about you", "Your personality", "All of the above and more"],
+                        correct: 3,
+                        response: "Correct! The answer is always ALL OF YOU! 💕"
+                    },
+                    {
+                        q: "When did I realize I loved you?",
+                        options: ["saeed told me", "when u gave me a choclate", "the first time u threw an eraser at me in y7(that was so cute)", "I just knew instantly"],
+                        correct: 2,
+                        response: "I knew from the very beginning that you were special! ✨"
+                    },
+                    {
+                        q: "What would I choose if I had to pick?",
+                        options: ["My phone", "A monkey from the zoo", "You", "My favorite game"],
+                        correct: 2,
+                        response: "Always YOU! Every single time! 💝"
                     }
-                }, 2000);
-            } else {
-                result.innerHTML = "Try again gorgus!";
-                result.style.color = '#e74c3c';
-            }
-        }
+                ];
 
-        function loadQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById('question').textContent = q.q;
-            document.getElementById('result').textContent = '';
-            
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.innerHTML = '';
-            q.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-btn';
-                btn.textContent = opt;
-                btn.onclick = () => checkAnswer(idx);
-                optionsDiv.appendChild(btn);
-            });
-        }
+                window.checkAnswer = function(selected) {
+                    const result = document.getElementById('result');
+                    const q = questions[currentQuestion];
+                    
+                    if(selected === q.correct) {
+                        result.innerHTML = q.response + '<br>❤️❤️❤️';
+                        result.style.color = '#00b894';
+                        
+                        setTimeout(function() {
+                            currentQuestion++;
+                            if(currentQuestion < questions.length) {
+                                loadQuestion();
+                            } else {
+                                document.getElementById('quiz-box').innerHTML = 
+                                    '<div style="text-align:center; padding:40px;">' +
+                                    '<div style="font-size:4em; margin-bottom:20px;">🎉</div>' +
+                                    '<h2 style="color:#764ba2; margin-bottom:20px;">Quiz Complete!</h2>' +
+                                    '<p style="font-size:1.2em; color:#555;">You know me so well!<br>That\'s because we\'re perfect for each other trust 💕</p>' +
+                                    '<button onclick="location.reload()" style="margin-top:20px; background:linear-gradient(45deg, #667eea 0%, #764ba2 100%); border:none; color:white; padding:15px 30px; border-radius:25px; cursor:pointer;">Play Again</button>' +
+                                    '</div>';
+                            }
+                        }, 2000);
+                    } else {
+                        result.innerHTML = "Try again gorgus!";
+                        result.style.color = '#e74c3c';
+                    }
+                };
 
-
+                window.loadQuestion = function() {
+                    const q = questions[currentQuestion];
+                    document.getElementById('question').textContent = q.q;
+                    document.getElementById('result').textContent = '';
+                    
+                    const optionsDiv = document.getElementById('options');
+                    optionsDiv.innerHTML = '';
+                    q.options.forEach(function(opt, idx) {
+                        const btn = document.createElement('button');
+                        btn.className = 'quiz-btn';
+                        btn.textContent = opt;
+                        btn.onclick = function() { checkAnswer(idx); };
+                        btn.style.cssText = 'background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); border: none; color: white; padding: 20px; border-radius: 15px; cursor: pointer; font-size: 1.1em; transition: all 0.3s; margin-bottom: 10px;';
+                        optionsDiv.appendChild(btn);
+                    });
+                };
+            })();
+        </script>
+    </div>
         /* Page 10: Final Message */
         .final-message {
             text-align: center;
@@ -1537,6 +1556,7 @@
     </script>
 </body>
 </html>
+
 
 
 
