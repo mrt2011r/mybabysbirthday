@@ -1053,13 +1053,13 @@
             <div class="quiz-result" id="result"></div>
         </div>
     </div>
-        <!-- PAGE 9: GAME - Catch the Hearts -->
+            <!-- PAGE 9: GAME - Catch the Hearts -->
     <div id="game" class="page">
         <h2 style="text-align: center; color: white; font-size: 2.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
             Catch the Hearts! 💕
         </h2>
         <p style="text-align: center; color: white; font-size: 1.2em; margin-bottom: 30px;">
-            Click the falling hearts to score points! You have 30 seconds!
+            Move your mouse over the falling hearts to catch them! You have 30 seconds!
         </p>
         
         <!-- Game Container -->
@@ -1091,7 +1091,7 @@
             
             <!-- Instructions -->
             <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; color: #666; text-align: center; font-size: 0.95em;">
-                💡 Click the falling hearts before they reach the bottom! Each heart = 10 points!
+                💡 Move your mouse over the falling hearts to catch them! Each heart = 10 points!
             </div>
         </div>
         
@@ -1130,38 +1130,50 @@
                 function spawnHeart() {
                     if(!isPlaying) return;
                     
-                    const heart = document.createElement('div');
-                    heart.className = 'game-heart';
-                    heart.textContent = '💖';
-                    heart.style.position = 'absolute';
-                    heart.style.left = Math.random() * (gameArea.offsetWidth - 60) + 'px';
-                    heart.style.top = '-60px';
-                    heart.style.fontSize = '3em'; /* BIGGER HEART */
-                    heart.style.cursor = 'pointer';
-                    heart.style.userSelect = 'none';
-                    heart.style.transition = 'top 5s linear'; /* SLOWER FALL (was 3s, now 5s) */
-                    heart.style.zIndex = '5';
+                    const heartContainer = document.createElement('div');
+                    heartContainer.className = 'game-heart';
+                    heartContainer.style.position = 'absolute';
+                    heartContainer.style.left = Math.random() * (gameArea.offsetWidth - 80) + 'px';
+                    heartContainer.style.top = '-80px';
+                    heartContainer.style.width = '70px';
+                    heartContainer.style.height = '70px';
+                    heartContainer.style.display = 'flex';
+                    heartContainer.style.alignItems = 'center';
+                    heartContainer.style.justifyContent = 'center';
+                    heartContainer.style.cursor = 'pointer';
+                    heartContainer.style.userSelect = 'none';
+                    heartContainer.style.transition = 'top 5s linear';
+                    heartContainer.style.zIndex = '5';
                     
-                    heart.onclick = function(e) {
-                        e.stopPropagation();
-                        if(!isPlaying) return;
+                    const heartEmoji = document.createElement('div');
+                    heartEmoji.textContent = '💖';
+                    heartEmoji.style.fontSize = '3em';
+                    heartEmoji.style.pointerEvents = 'none';
+                    
+                    heartContainer.appendChild(heartEmoji);
+                    
+                    let caught = false;
+                    
+                    heartContainer.onmouseenter = function(e) {
+                        if(!isPlaying || caught) return;
+                        caught = true;
                         gameScore += 10;
                         document.getElementById('score').textContent = gameScore;
-                        heart.style.transform = 'scale(1.5)';
-                        heart.style.opacity = '0';
-                        setTimeout(function() { heart.remove(); }, 200);
+                        heartContainer.style.transform = 'scale(1.5)';
+                        heartContainer.style.opacity = '0';
+                        setTimeout(function() { heartContainer.remove(); }, 200);
                         createMiniExplosion(e.clientX, e.clientY);
                     };
                     
-                    gameArea.appendChild(heart);
+                    gameArea.appendChild(heartContainer);
                     
                     setTimeout(function() {
-                        heart.style.top = gameArea.offsetHeight + 'px';
+                        heartContainer.style.top = gameArea.offsetHeight + 'px';
                     }, 50);
                     
                     setTimeout(function() {
-                        if(heart.parentElement) heart.remove();
-                    }, 5000); /* MATCHES THE 5s TRANSITION */
+                        if(heartContainer.parentElement) heartContainer.remove();
+                    }, 5000);
                 }
                 
                 function createMiniExplosion(x, y) {
@@ -1517,4 +1529,5 @@
     </script>
 </body>
 </html>
+
 
