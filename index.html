@@ -1053,7 +1053,7 @@
             <div class="quiz-result" id="result"></div>
         </div>
     </div>
-    <!-- PAGE 9: GAME - Catch the Hearts -->
+        <!-- PAGE 9: GAME - Catch the Hearts -->
     <div id="game" class="page">
         <h2 style="text-align: center; color: white; font-size: 2.5em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
             Catch the Hearts! 💕
@@ -1134,12 +1134,12 @@
                     heart.className = 'game-heart';
                     heart.textContent = '💖';
                     heart.style.position = 'absolute';
-                    heart.style.left = Math.random() * (gameArea.offsetWidth - 40) + 'px';
-                    heart.style.top = '-40px';
-                    heart.style.fontSize = '2em';
+                    heart.style.left = Math.random() * (gameArea.offsetWidth - 60) + 'px';
+                    heart.style.top = '-60px';
+                    heart.style.fontSize = '3em'; /* BIGGER HEART */
                     heart.style.cursor = 'pointer';
                     heart.style.userSelect = 'none';
-                    heart.style.transition = 'top 3s linear';
+                    heart.style.transition = 'top 5s linear'; /* SLOWER FALL (was 3s, now 5s) */
                     heart.style.zIndex = '5';
                     
                     heart.onclick = function(e) {
@@ -1161,7 +1161,7 @@
                     
                     setTimeout(function() {
                         if(heart.parentElement) heart.remove();
-                    }, 3000);
+                    }, 5000); /* MATCHES THE 5s TRANSITION */
                 }
                 
                 function createMiniExplosion(x, y) {
@@ -1205,7 +1205,7 @@
                     if(gameScore >= 200) msg = 'Wow! You caught so many hearts! Just like you caught mine! 💕';
                     else if(gameScore >= 100) msg = 'Great job! You have amazing reflexes, just like your amazing heart! 💝';
                     else if(gameScore >= 50) msg = 'Good try! Every heart counts, just like every moment with you! 💗';
-                    else msg = 'Aww its ok, you tried! You already have my heart anyway baby! 💓';
+                    else msg = 'Aww, you tried! You already have my heart anyway! 💓';
                     
                     document.getElementById('loveMessage').textContent = msg;
                 };
@@ -1517,3 +1517,4 @@
     </script>
 </body>
 </html>
+
