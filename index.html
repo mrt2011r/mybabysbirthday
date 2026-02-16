@@ -630,7 +630,139 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
+
+        /* CAKE PAGE STYLES */
+        .cake-container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .cake-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 30px auto;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cake-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        .cake-slice {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .cake-slice:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        .cake-slice.eaten {
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+
+        .cake-slice.eating {
+            animation: eatSlice 0.5s ease forwards;
+        }
+
+        @keyframes eatSlice {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .cake-center {
+            fill: #ff6b9d;
+        }
+
+        .cake-frosting {
+            fill: #ffb6c1;
+        }
+
+        .cake-inner {
+            fill: #f4a460;
+        }
+
+        .sprinkles {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+
+        .candle {
+            fill: #ffd700;
+        }
+
+        .flame {
+            fill: #ff6b35;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .cake-message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            min-height: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cake-counter {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 25px;
+        }
+
+        .reset-cake-btn {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .reset-cake-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.5);
+        }
+
+        .plate {
+            fill: #e8e8e8;
+            stroke: #ccc;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            .cake-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+        }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -642,6 +774,7 @@
         <button onclick="showPage('gallery')" id="nav-gallery">🖼️ Gallery</button>
         <button onclick="showPage('letter')" id="nav-letter">💌 Letter</button>
         <button onclick="showPage('wishes')" id="nav-wishes">🎂 Wishes</button>
+        <button onclick="showPage('cake')" id="nav-cake">🍰 Cake</button>
         <button onclick="showPage('countdown')" id="nav-countdown">⏰ Countdown</button>
         <button onclick="showPage('quiz')" id="nav-quiz">❓ Quiz</button>
         <button onclick="showPage('game')" id="nav-game">🎮 Game</button>
@@ -769,7 +902,7 @@
             </div>
             <div class="reason-item" style="animation-delay: 1.2s;">
                 <div class="reason-number">12</div>
-                <div class="reason-text">How you remember the little things about me</div>
+                <div class="reason-text">How you remember the little things about me(and u forget everything else but its ok bc i love ur memory)</div>
             </div>
             <div class="reason-item" style="animation-delay: 1.3s;">
                 <div class="reason-number">13</div>
@@ -777,11 +910,11 @@
             </div>
             <div class="reason-item" style="animation-delay: 1.4s;">
                 <div class="reason-number">14</div>
-                <div class="reason-text">The way you make ordinary moments magical</div>
+                <div class="reason-text">Your rly rluy rly gorgus eyes</div>
             </div>
             <div class="reason-item" style="animation-delay: 1.5s;">
                 <div class="reason-number">15</div>
-                <div class="reason-text">Because you're YOU - and you're perfect to me</div>
+                <div class="reason-text">Because you're YOU</div>
             </div>
         </div>
     </div>
@@ -824,7 +957,7 @@
                 <p>You are everything I need and everything I want baby. Your laughter is my favorite sound, your happiness is my goal in life , and your love is the best thing that ever happened to me. When I look at you, I see my present and my future.</p>
                 <p>Fifteen is such a special age - you're growing into the incredible woman you're meant to be(grandma), and I feel solucky to be urs and grow with u. its like every day you become more amazing, more beautiful and idek how ur already perfect but u keep getting perfecter and i am so lucky to have you.</p>
                 <p>I promise to always support your dreams, to be your safe place, to make you laugh when you want to cry, and to love you unconditionally through every high and low. You're not just my girlfriend - you're my best friend, my wife, my favorite person, my old person , and like the the best person ever.</p>
-                <p>Happy Birthday, baby. i hope this year bring you as much joy as you bring me every single day.</p>
+                <p>Happy Birthday, baby. i hope this year bring you as much joy as you bring me every single day.(YOUR STILL A GRANDMA)</p>
             </div>
             <div class="letter-signature">
                 Forever Yours,<br>
@@ -839,14 +972,132 @@
             <div class="cake">🎂</div>
             <h2 style="font-size: 2.5em; margin-bottom: 20px;">Make a Wish!</h2>
             <p style="font-size: 1.3em; margin-bottom: 30px; opacity: 0.9;">
-                Type your birthday wish and add it to the celebration!(ss it and send it to meeeeeeeee)
+                Type your birthday wish and send it to me! 💌
             </p>
-            <div>
-                <input type="text" class="wish-input" id="wishInput" placeholder="I wish for..." maxlength="50">
+            <form id="wishForm" onsubmit="submitWish(event)">
+                <input type="text" class="wish-input" id="wishInput" name="wish" placeholder="I wish for..." maxlength="100" required>
+                <input type="hidden" name="_subject" value="New Birthday Wish! 🎂">
                 <br>
-                <button class="wish-btn" onclick="addWish()">✨ Add Wish ✨</button>
-            </div>
+                <button type="submit" class="wish-btn">✨ Send Wish ✨</button>
+            </form>
+            <div id="wishStatus" style="margin-top: 20px; font-size: 1.1em; min-height: 30px;"></div>
             <div class="wishes-list" id="wishesList"></div>
+           
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: CAKE - EAT SLICES -->
+    <div id="cake" class="page">
+        <div class="cake-container">
+            <h2 style="font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                Eat the Cake! 🍰
+            </h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px; opacity: 0.9;">
+                Click on the slices to eat them! 🎂
+            </p>
+            <div class="cake-counter">
+                Slices Eaten: <span id="slicesEaten">0</span> / 8
+            </div>
+            <div class="cake-wrapper">
+                <svg class="cake-svg" viewBox="0 0 400 400">
+                    <!-- Plate -->
+                    <circle cx="200" cy="200" r="190" class="plate"/>
+                    
+                    <!-- Cake Slices - Each slice is a separate clickable path -->
+                    <!-- Slice 1 (top) -->
+                    <g class="cake-slice" data-slice="1" onclick="eatSlice(this)">
+                        <path d="M200,200 L200,60 A140,140 0 0,1 299,110 Z" class="cake-frosting"/>
+                        <path d="M200,200 L200,75 A125,125 0 0,1 288,119 Z" class="cake-inner"/>
+                        <circle cx="250" cy="100" r="3" fill="#ff6b6b"/>
+                        <circle cx="230" cy="85" r="3" fill="#4ecdc4"/>
+                        <circle cx="270" cy="115" r="3" fill="#ffe66d"/>
+                    </g>
+                    
+                    <!-- Slice 2 (top-right) -->
+                    <g class="cake-slice" data-slice="2" onclick="eatSlice(this)">
+                        <path d="M200,200 L299,110 A140,140 0 0,1 340,200 Z" class="cake-frosting"/>
+                        <path d="M200,200 L288,119 A125,125 0 0,1 325,200 Z" class="cake-inner"/>
+                        <circle cx="310" cy="150" r="3" fill="#a8e6cf"/>
+                        <circle cx="295" cy="130" r="3" fill="#ff8b94"/>
+                        <circle cx="320" cy="170" r="3" fill="#c7ceea"/>
+                    </g>
+                    
+                    <!-- Slice 3 (right) -->
+                    <g class="cake-slice" data-slice="3" onclick="eatSlice(this)">
+                        <path d="M200,200 L340,200 A140,140 0 0,1 299,290 Z" class="cake-frosting"/>
+                        <path d="M200,200 L325,200 A125,125 0 0,1 288,281 Z" class="cake-inner"/>
+                        <circle cx="310" cy="250" r="3" fill="#ffd3b6"/>
+                        <circle cx="330" cy="230" r="3" fill="#ffaaa5"/>
+                        <circle cx="295" cy="270" r="3" fill="#ff8b94"/>
+                    </g>
+                    
+                    <!-- Slice 4 (bottom-right) -->
+                    <g class="cake-slice" data-slice="4" onclick="eatSlice(this)">
+                        <path d="M200,200 L299,290 A140,140 0 0,1 200,340 Z" class="cake-frosting"/>
+                        <path d="M200,200 L288,281 A125,125 0 0,1 200,325 Z" class="cake-inner"/>
+                        <circle cx="250" cy="300" r="3" fill="#dcedc1"/>
+                        <circle cx="270" cy="285" r="3" fill="#ffd3b6"/>
+                        <circle cx="230" cy="315" r="3" fill="#a8e6cf"/>
+                    </g>
+                    
+                    <!-- Slice 5 (bottom) -->
+                    <g class="cake-slice" data-slice="5" onclick="eatSlice(this)">
+                        <path d="M200,200 L200,340 A140,140 0 0,1 101,290 Z" class="cake-frosting"/>
+                        <path d="M200,200 L200,325 A125,125 0 0,1 112,281 Z" class="cake-inner"/>
+                        <circle cx="150" cy="300" r="3" fill="#ff8b94"/>
+                        <circle cx="170" cy="315" r="3" fill="#c7ceea"/>
+                        <circle cx="130" cy="285" r="3" fill="#ffe66d"/>
+                    </g>
+                    
+                    <!-- Slice 6 (bottom-left) -->
+                    <g class="cake-slice" data-slice="6" onclick="eatSlice(this)">
+                        <path d="M200,200 L101,290 A140,140 0 0,1 60,200 Z" class="cake-frosting"/>
+                        <path d="M200,200 L112,281 A125,125 0 0,1 75,200 Z" class="cake-inner"/>
+                        <circle cx="90" cy="250" r="3" fill="#4ecdc4"/>
+                        <circle cx="70" cy="230" r="3" fill="#ff6b6b"/>
+                        <circle cx="105" cy="270" r="3" fill="#a8e6cf"/>
+                    </g>
+                    
+                    <!-- Slice 7 (left) -->
+                    <g class="cake-slice" data-slice="7" onclick="eatSlice(this)">
+                        <path d="M200,200 L60,200 A140,140 0 0,1 101,110 Z" class="cake-frosting"/>
+                        <path d="M200,200 L75,200 A125,125 0 0,1 112,119 Z" class="cake-inner"/>
+                        <circle cx="90" cy="150" r="3" fill="#ffd3b6"/>
+                        <circle cx="70" cy="170" r="3" fill="#ffaaa5"/>
+                        <circle cx="105" cy="130" r="3" fill="#dcedc1"/>
+                    </g>
+                    
+                    <!-- Slice 8 (top-left) -->
+                    <g class="cake-slice" data-slice="8" onclick="eatSlice(this)">
+                        <path d="M200,200 L101,110 A140,140 0 0,1 200,60 Z" class="cake-frosting"/>
+                        <path d="M200,200 L112,119 A125,125 0 0,1 200,75 Z" class="cake-inner"/>
+                        <circle cx="150" cy="100" r="3" fill="#c7ceea"/>
+                        <circle cx="130" cy="115" r="3" fill="#ff8b94"/>
+                        <circle cx="170" cy="85" r="3" fill="#4ecdc4"/>
+                    </g>
+                    
+                    <!-- Center decoration -->
+                    <circle cx="200" cy="200" r="25" class="cake-center"/>
+                    <text x="200" y="208" text-anchor="middle" fill="white" font-size="14" font-weight="bold">15</text>
+                    
+                    <!-- Candle 1 -->
+                    <g class="candle-group" data-candle="1" onclick="blowCandle(this)" style="cursor: pointer;">
+                        <rect x="165" y="35" width="20" height="40" class="candle" rx="3"/>
+                        <ellipse cx="175" cy="32" rx="7" ry="12" class="flame"/>
+                        <text x="175" y="62" text-anchor="middle" fill="#333" font-size="18" font-weight="bold" style="pointer-events: none;">1</text>
+                    </g>
+                    
+                    <!-- Candle 5 -->
+                    <g class="candle-group" data-candle="5" onclick="blowCandle(this)" style="cursor: pointer;">
+                        <rect x="215" y="35" width="20" height="40" class="candle" rx="3"/>
+                        <ellipse cx="225" cy="32" rx="7" ry="12" class="flame"/>
+                        <text x="225" y="62" text-anchor="middle" fill="#333" font-size="18" font-weight="bold" style="pointer-events: none;">5</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="cake-message" id="cakeMessage">CLICK ON THE CANDLES TO BLOW THEM OUT AND THEN CLICK ON THE CAKE TO EAT IT BABYY</div>
+            <button class="reset-cake-btn" onclick="resetCake()">🎂 Bake a New Cake</button>
         </div>
     </div>
 
@@ -967,7 +1218,7 @@
                 🎂🎉🎈🎁💝
             </div>
             <button onclick="createFireworks()" style="background: #ffd700; border: none; padding: 20px 50px; border-radius: 40px; font-size: 1.3em; cursor: pointer; font-weight: bold; color: #333; box-shadow: 0 10px 30px rgba(255,215,0,0.5); animation: pulse 2s infinite;">
-                🎆 Click for Celebration! 🎆
+                 Click for CONFETTI(I LOVE CONFETTI ITS SO COOL)! 
             </button>
             <p style="margin-top: 40px; font-size: 1.1em; opacity: 0.9;">
                 Made with love by your husband | happy bday baby
@@ -993,7 +1244,7 @@
             my favorite person to tell things to, 
             and my favorite everything.
             <br><br>
-            💕 Forever and always 💕
+            💕I LOVE UUUUUUUUUUUUU💕
         </p>
         <button onclick="hideSecret()" style="margin-top: 20px; background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%); border: none; color: white; padding: 10px 30px; border-radius: 20px; cursor: pointer;">Close</button>
     </div>
@@ -1032,17 +1283,68 @@
             }
         }
 
-        // Birthday Wishes
-        function addWish() {
-            const input = document.getElementById('wishInput');
-            const wish = input.value.trim();
-            if(wish) {
+        // Birthday Wishes - Send to Email via Formspree
+        // REPLACE 'YOUR_FORM_ID' WITH YOUR ACTUAL FORMSPREE FORM ID
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meelkkyk';
+        
+        async function submitWish(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('wishForm');
+            const wishInput = document.getElementById('wishInput');
+            const wishStatus = document.getElementById('wishStatus');
+            const wish = wishInput.value.trim();
+            
+            if (!wish) return;
+            
+            // Show sending status
+            wishStatus.innerHTML = '<span style="color: #ffd700;">Sending your wish... 💫</span>';
+            
+            try {
+                // Send to Formspree
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success - add to visual list
+                    const wishesList = document.getElementById('wishesList');
+                    const wishTag = document.createElement('div');
+                    wishTag.className = 'wish-tag';
+                    wishTag.textContent = '✨ ' + wish;
+                    wishesList.appendChild(wishTag);
+                    
+                    wishStatus.innerHTML = '<span style="color: #00ff88;">Wish sent successfully! 💕</span>';
+                    wishInput.value = '';
+                    
+                    // Confetti celebration
+                    for(let i = 0; i < 15; i++) {
+                        setTimeout(() => createConfetti(), i * 80);
+                    }
+                    
+                    // Clear status after 3 seconds
+                    setTimeout(() => {
+                        wishStatus.textContent = '';
+                    }, 3000);
+                } else {
+                    wishStatus.innerHTML = '<span style="color: #ff6b6b;">Oops! Something went wrong. Try again! 😅</span>';
+                }
+            } catch (error) {
+                // If Formspree isn't set up yet, show the wish locally
                 const wishesList = document.getElementById('wishesList');
                 const wishTag = document.createElement('div');
                 wishTag.className = 'wish-tag';
                 wishTag.textContent = '✨ ' + wish;
                 wishesList.appendChild(wishTag);
-                input.value = '';
+                
+                wishStatus.innerHTML = '<span style="color: #ffd700;">Wish saved! (Email not set up yet - see instructions below 👇)</span>';
+                showSetupInstructions();
+                wishInput.value = '';
+                
                 for(let i = 0; i < 10; i++) {
                     setTimeout(() => createConfetti(), i * 100);
                 }
@@ -1101,6 +1403,122 @@
             loadSong(currentIndex);
             audio.play();
         };
+
+        // CAKE EATING FUNCTIONALITY
+        let slicesEaten = 0;
+        const totalSlices = 8;
+        const cakeMessages = [
+            "YAY DO U LIKE IT",
+            "I LOVE U",
+            "maybe thiis cake has poison mwhehehehehe",
+            "KEEP EATING BABYYY",
+            "MMMMMMMMWAH",
+            "U MAKE ME SO HAPPY",
+            "I MADE THIS CAKE W OUT BANANAS BC I HATE BANANAS",
+            "LAST SLICE MAKE A WISH BABY"
+        ];
+
+        function eatSlice(sliceElement) {
+            if (sliceElement.classList.contains('eaten')) return;
+            
+            sliceElement.classList.add('eating');
+            slicesEaten++;
+            
+            document.getElementById('slicesEaten').textContent = slicesEaten;
+            document.getElementById('cakeMessage').textContent = cakeMessages[slicesEaten - 1];
+            
+            // Create crumbs effect
+            createCrumbs(sliceElement);
+            
+            setTimeout(() => {
+                sliceElement.classList.remove('eating');
+                sliceElement.classList.add('eaten');
+            }, 500);
+            
+            if (slicesEaten === totalSlices) {
+                setTimeout(() => {
+                    document.getElementById('cakeMessage').innerHTML = "🎉 Cake finished! Happy 15th Birthday my love! 💕🎂";
+                    createConfetti();
+                }, 600);
+            }
+        }
+
+        function createCrumbs(sliceElement) {
+            const rect = sliceElement.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 8; i++) {
+                const crumb = document.createElement('div');
+                crumb.style.cssText = `position:fixed;left:${centerX}px;top:${centerY}px;width:6px;height:6px;background:#f4a460;border-radius:50%;pointer-events:none;z-index:9999;`;
+                document.body.appendChild(crumb);
+                
+                const angle = (Math.PI * 2 * i) / 8;
+                const velocity = 30 + Math.random() * 30;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                crumb.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${vx}px, ${vy}px) scale(0)`, opacity: 0 }
+                ], { duration: 600, easing: 'ease-out' }).onfinish = () => crumb.remove();
+            }
+        }
+
+        function blowCandle(candleGroup) {
+            if (candleGroup.classList.contains('blown')) return;
+            
+            candleGroup.classList.add('blown');
+            candleGroup.style.opacity = '0';
+            candleGroup.style.transition = 'opacity 0.5s ease';
+            
+            // Create smoke effect
+            createSmoke(candleGroup);
+            
+            // Check if both candles are blown
+            const blownCandles = document.querySelectorAll('.candle-group.blown').length;
+            if (blownCandles === 2) {
+                document.getElementById('cakeMessage').innerHTML = "🎂 Make a wish! All candles blown out! 💕";
+                createConfetti();
+            } else {
+                document.getElementById('cakeMessage').textContent = "One more to blow! 💨";
+            }
+        }
+
+        function createSmoke(candleGroup) {
+            const rect = candleGroup.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + 10;
+            
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const smoke = document.createElement('div');
+                    smoke.style.cssText = `position:fixed;left:${centerX + (Math.random() * 20 - 10)}px;top:${centerY}px;width:15px;height:15px;background:#ccc;border-radius:50%;pointer-events:none;z-index:9999;opacity:0.6;`;
+                    document.body.appendChild(smoke);
+                    
+                    smoke.animate([
+                        { transform: 'translate(0,0) scale(1)', opacity: 0.6 },
+                        { transform: `translate(${(Math.random() - 0.5) * 30}px, -40px) scale(2)`, opacity: 0 }
+                    ], { duration: 1000, easing: 'ease-out' }).onfinish = () => smoke.remove();
+                }, i * 100);
+            }
+        }
+
+        function resetCake() {
+            slicesEaten = 0;
+            document.getElementById('slicesEaten').textContent = '0';
+            document.getElementById('cakeMessage').textContent = 'CLICK ON THE CANDLES TO BLOW THEM OUT AND THEN CLICK ON THE CAKE TO EAT IT BABYY';
+            
+            document.querySelectorAll('.cake-slice').forEach(slice => {
+                slice.classList.remove('eaten', 'eating');
+            });
+            
+            // Reset candles
+            document.querySelectorAll('.candle-group').forEach(candle => {
+                candle.classList.remove('blown');
+                candle.style.opacity = '1';
+            });
+        }
 
         // QUIZ GAME
         let currentQuestion = 0;
@@ -1262,10 +1680,10 @@
             document.getElementById('gameOverScreen').style.display = 'flex';
             
             let msg = '';
-            if(gameScore >= 200) msg = 'Wow! You caught so many hearts! Just like you caught mine! 💕';
-            else if(gameScore >= 100) msg = 'Great job! You have amazing reflexes, just like your amazing heart! 💝';
-            else if(gameScore >= 50) msg = 'Good try! Every heart counts, just like every moment with you! 💗';
-            else msg = 'Aww, you tried! You already have my heart anyway! 💓';
+            if(gameScore >= 200) msg = 'WOW U CAUGHT SO MANY HEARTS JUST LIKE U CAUGHT MINE';
+            else if(gameScore >= 100) msg = 'GREAT JOB BABYYY';
+            else if(gameScore >= 50) msg = 'NICE TRY GORGUS I LOVE U';
+            else msg = 'Aww, you tried! ITS OK U HAVE MY HEART BABY';
             
             document.getElementById('loveMessage').textContent = msg;
         }
@@ -1366,12 +1784,11 @@
             setTimeout(startMusic, 500);
         };
 
-        // Enter key for wishes
-        document.addEventListener('keypress', function(e) {
-            if(e.key === 'Enter' && document.getElementById('wishes').classList.contains('active')) {
-                addWish();
-            }
-        });
+        // Show/hide setup instructions
+        function showSetupInstructions() {
+            const instructions = document.getElementById('setupInstructions');
+            instructions.style.display = instructions.style.display === 'none' ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
